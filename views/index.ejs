@@ -6,6 +6,14 @@
     <title>Document</title>
   </head>
   <body>
-    <p>Hi there!</p>
+    <%- include('./nav.ejs', {links: links}) %> <% messages.forEach(message =>
+    {%>
+    <ul>
+      <li><%= message.user%></li>
+      <li><%= message.text%></li>
+      <li><%= message.added%></li>
+    </ul>
+    <button><a href="/new/<%= message.id%>">Open</a></button>
+    <% }) %>
   </body>
 </html>
