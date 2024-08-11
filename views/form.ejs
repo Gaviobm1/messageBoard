@@ -8,10 +8,10 @@
   <body>
     <%- include('./nav.ejs', {links: links}) %>
     <form action="/new" METHOD="POST">
-      <label for="user">User:</label>
-      <input type="text" id="user" name="user" />
-      <label for="message">Message:</label>
-      <textarea name="message" id="message"></textarea>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" />
+      <label for="text">Message:</label>
+      <textarea name="text" id="text"></textarea>
       <button>Submit</button>
     </form>
   </body>
