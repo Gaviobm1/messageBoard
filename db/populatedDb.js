@@ -1,5 +1,6 @@
 const { Client } = require("pg");
 const dotenv = require("dotenv");
+delete process.env.DATABASE_PASSWORD;
 dotenv.config();
 
 const SQL = `
@@ -20,12 +21,18 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: `postgresql://${process.env.DATABASE_ROLE}:${process.env.DATABASE_PASSWORD}@${process.argv[2]}`,
+    host: process.env.DATABASE_HOST,
+    database: process.env.DATABASE_NAME,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PWD,
+    port: process.env.DATABASE_PORT,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   });
   await client.connect();
   await client.query(SQL);
   await client.end();
-  console.log("done");
 }
 
 main();
